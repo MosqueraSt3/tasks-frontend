@@ -1,0 +1,2 @@
+export const NEW_PROJECT = 'NEW_PROJECT'
+export const GET_PROJECTS = 'GET_PROJECTS'
