@@ -1,41 +1,52 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+
+import projectContext from '../../context/Projects/projectContext'
 
 const NewTask = () => {
 
+    // GET FORM STATE 
+    const projectsContext = useContext(projectContext)
+    const { project } = projectsContext
+
+    // 
+    if (!project) return null
+
+    const [ currentProject ] = project
+
     // STATE PROJECT
-    const [ task, setTask ] = useState({
-        name: ''
-    })
+    // const [ task, setTask ] = useState({
+    //     name: ''
+    // })
 
-    // STATE ERROR
-    const [ error, setError ] = useState(false)
+    // // STATE ERROR
+    // const [ error, setError ] = useState(false)
 
-    // GET PROJECT 
-    const { name } = task
+    // // GET PROJECT 
+    // const { name } = task
 
-    // GET DATA FROM FORM
-    const handleChange = e => {
-        setTask({
-            ...task,
-            [e.target.name]: e.target.value
-        })
-    }
+    // // GET DATA FROM FORM
+    // const handleChange = e => {
+    //     setTask({
+    //         ...task,
+    //         [e.target.name]: e.target.value
+    //     })
+    // }
 
     // SUBMIT
-    const handleSubmit = e => {
-        e.preventDefault()
+    // const handleSubmit = e => {
+    //     e.preventDefault()
 
-        // NOT EMPTY FIELDS
-        if (name.trim() === '') return setError(true) 
+    //     // NOT EMPTY FIELDS
+    //     if (name.trim() === '') return setError(true) 
 
-        // SUCCESS
-        setError(false)
-    }
+    //     // SUCCESS
+    //     setError(false)
+    // }
 
     return (
         <div className="formulario">
             <form 
-                onSubmit={handleSubmit}
+                // onSubmit={handleSubmit}
             >
                 <div className="contenedor-input">
                     <input 
@@ -43,8 +54,8 @@ const NewTask = () => {
                         className="input-text"
                         placeholder="Task Name"
                         name="name"
-                        value={name}
-                        onChange={handleChange}
+                        // value={name}
+                        // onChange={handleChange}
                     />
                 </div>
                 <div className="contenedor-input">

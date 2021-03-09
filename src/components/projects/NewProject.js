@@ -6,15 +6,12 @@ const NewProject = () => {
 
     // GET FORM STATE 
     const projectsContext = useContext(projectContext)
-    const { newProject, showForm } = projectsContext
+    const { newProject, errorform, showForm, addProject, showError } = projectsContext
 
     // PROJECT STATE 
     const [ project, setProject ] = useState({
         name: ''
     })
-
-    // ERROR STATE 
-    const [ error, setError ] = useState(false)
 
     // GET PROJECT 
     const { name } = project
@@ -32,10 +29,15 @@ const NewProject = () => {
         e.preventDefault()
 
         // NOT EMPTY FIELDS
-        if (name.trim() === '') return setError(true) 
+        if (name === '') return showError() 
 
-        // SUCCESS
-        setError(false)
+        // ADD TO STATE
+        addProject(project)
+
+        // RESTART FORM
+        setProject({
+            name: ''
+        })
     }
 
     return (
@@ -68,6 +70,7 @@ const NewProject = () => {
                         </form>)
                     : null
             }
+            { errorform ? <p className="mensaje error">Project Name is Required</p> : null}
         </Fragment>
     )
 }
