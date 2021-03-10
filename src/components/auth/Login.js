@@ -10,7 +10,7 @@ const Login = () => {
     })
 
     // STATE ERROR
-    const [ error, setError ] = useState(false)
+    // const [ error, setError ] = useState(false)
 
     // GET USER
     const { email, password } = user
@@ -28,10 +28,10 @@ const Login = () => {
         e.preventDefault()
 
         // NOT EMPTY FIELDS
-        if (email.trim() === '' || password.trim() === '') return setError(true)
+        if (email.trim() === '' || password.trim() === '') return //setError(true)
         
         // SUCCESS
-        setError(false)
+        // setError(false)
 
 
     }

@@ -12,7 +12,7 @@ const NewAccount = () => {
     })
 
     // STATE ERROR
-    const [ error, setError ] = useState(false)
+    // const [ error, setError ] = useState(false)
 
     // GET USER
     const { name, email, password, confirmPassword } = user
@@ -30,14 +30,14 @@ const NewAccount = () => {
         e.preventDefault()
 
         // NOT EMPTY FIELDS
-        if (email.trim() === '' || password.trim() === '') return setError(true)
+        if (email.trim() === '' || password.trim() === '') return //setError(true)
 
         // MIN CHARACTERS
 
         // CONFIRM PASSWORD
         
         // SUCCESS
-        setError(false)
+        //setError(false)
 
 
     }

@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 import Project from './Project'
 
@@ -13,6 +14,7 @@ const ListProjects = () => {
     // 
     useEffect(() => {
         getProjects()
+        // eslint-disable-next-line
     }, [])
     
     // PROJECTS EQUAL TO EMPTY
@@ -20,12 +22,19 @@ const ListProjects = () => {
     
     return (
         <ul className="listado-proyectos">
-            {projects.map(p => (
-                <Project 
-                    key={p.id}
-                    project={p}
-                />
-            ))}
+            <TransitionGroup>
+                {projects.map(p => (
+                    <CSSTransition
+                        key={p.id}
+                        timeout={200}
+                        className="proyecto"
+                    >
+                            <Project 
+                                project={p}
+                            />
+                    </CSSTransition>
+                ))}
+            </TransitionGroup>
         </ul>
     )
 }

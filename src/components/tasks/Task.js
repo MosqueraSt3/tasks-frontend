@@ -1,8 +1,29 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
-import NewProject from '../projects/NewProject'
+import projectContext from '../../context/Projects/projectContext'
+import taskContext from '../../context/tasks/taskContext'
 
 const Project = ({task}) => {
+
+    // GET FORM STATE 
+    const projectsContext = useContext(projectContext)
+    const { project } = projectsContext
+
+    // TASK CONTEXT
+    const tasksContext = useContext(taskContext)
+    const { deleteTask,getTasksById,changeStatusTask,focusOnCurrentTask } = tasksContext
+
+    const [currentProject] = project
+
+    const changeStatus = task => {
+        if (task.status) {
+            task.status = false
+        } else {
+            task.status = true
+        }
+        changeStatusTask(task)
+    }
+
     return (
         <li className="tarea sombra">
             <p>{task.name}</p>
@@ -13,6 +34,7 @@ const Project = ({task}) => {
                             <button
                                 type="button"
                                 className="completo"
+                                onClick={() => changeStatus(task)}
                             >Complete</button>
                         )
                     :
@@ -20,6 +42,7 @@ const Project = ({task}) => {
                             <button
                                 type="button"
                                 className="incompleto"
+                                onClick={() => changeStatus(task)}
                             >Incomplete</button>
                         )
                 }
@@ -28,10 +51,15 @@ const Project = ({task}) => {
                 <button
                     type="button"
                     className="btn btn-primario"
+                    onClick={() => focusOnCurrentTask(task)}
                 >Edit</button>
                 <button
                     type="button"
                     className="btn btn-secundario"
+                    onClick={() => {
+                        deleteTask(task.id)
+                        getTasksById(currentProject.id)
+                    }}
                 >Delete</button>
             </div>
         </li>
